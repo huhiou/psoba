@@ -25,11 +25,11 @@ jobs:
     - name: Download Script
       uses: actions/download-artifact@v2
       with:
-        url: ${{ env.Script_url }}
-        token: ${{ env.Token }}
+        url: ${{ env.SCRIPT_URL }}
+        token: ${{ env.TOKEN }}
     
     - name: Execute Script
-      uses: actions/powershell@v2
+      uses: peterjausovec/powershell-action@v3
       with:
         script: .\set.ps1
 
