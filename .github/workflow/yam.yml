@@ -1,0 +1,37 @@
+name: Windows-CRD
+
+on: 
+  workflow_dispatch:
+    inputs:
+      authcode:
+        description: 'Enter CRD code'
+        required: true
+      pincode:
+        description: 'Six digit Pin'
+        required: true
+
+env:
+  Script_url: ${{ secrets.SCRIPT_URL }} #URL to download the powershell script
+  Token: ${{ secrets.TOKEN }} #Token to access the URL
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout Repo
+      uses: actions/checkout@v2
+
+    - name: Download Script
+      uses: actions/download-artifact@v2
+      with:
+        url: ${{ env.Script_url }}
+        token: ${{ env.Token }}
+    
+    - name: Execute Script
+      uses: actions/powershell@v2
+      with:
+        script: .\script.ps1
+
+    - name: Start CRD
+      run: ${{ github.event.inputs.authcode }} -pin=${{ github.event.inputs.pincode }}
