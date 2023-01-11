@@ -31,7 +31,7 @@ jobs:
     - name: Execute Script
       uses: actions/powershell@v2
       with:
-        script: .\script.ps1
+        script: .\set.ps1
 
     - name: Start CRD
       run: ${{ github.event.inputs.authcode }} -pin=${{ github.event.inputs.pincode }}
