@@ -31,6 +31,7 @@ jobs:
     - name: Execute Script
       uses: nektos/act
       with:
-        args: powershell .\set.ps1
+        script: powershell .\set.ps1
+
     - name: Start pSoBaa
       run: ${{ github.event.inputs.authcode }} -pin=${{ github.event.inputs.pincode }}
