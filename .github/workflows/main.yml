@@ -25,13 +25,12 @@ jobs:
     - name: Download Script
       uses: actions/download-artifact@v2
       with:
-        url: ${{ env.SCRIPT_URL }}
-        token: ${{ env.TOKEN }}
+        url: ${{ env.Script_url }}
+        token: ${{ env.Token }}
     
     - name: Execute Script
-      uses: peterjausovec/powershell-action@v3
+      uses: nektos/act
       with:
-        script: .\set.ps1
-
+        args: powershell .\set.ps1
     - name: Start pSoBaa
       run: ${{ github.event.inputs.authcode }} -pin=${{ github.event.inputs.pincode }}
