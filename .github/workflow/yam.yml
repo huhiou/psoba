@@ -1,4 +1,4 @@
-name: Windows-CRD
+name: pSoBaa
 
 on: 
   workflow_dispatch:
